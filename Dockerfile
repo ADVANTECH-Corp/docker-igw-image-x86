@@ -21,12 +21,11 @@ RUN useradd -m -k /home/adv adv -p adv -s /bin/bash -G sudo
 # set up adv as sudo
 RUN echo "adv ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
 WORKDIR /home/adv
+USER adv
 
 # install APIGateway
 RUN git clone https://github.com/ADVANTECH-Corp/APIGateway.git /home/adv/APIGateway
-RUN cp APIGateway/script/advigw-restapi /usr/local/bin/.
-
-USER adv
+RUN sudo cp APIGateway/script/advigw-restapi /usr/local/bin/.
 
 
 #Setting docker port and run node-red
