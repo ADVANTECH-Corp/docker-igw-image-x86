@@ -2,18 +2,16 @@ FROM ubuntu:16.04
 
 #MAINTAINER Advantech
 
-#update and install npm
+# update and install dev-tools 
 RUN apt-get update
-RUN apt-get install -y npm
-
-#tools
+RUN apt-get update
+RUN apt-get install -y gawk git-core diffstat gcc-multilib build-essential
+RUN apt-get install -y sed coreutils autoconf automake curl libtool libssl-dev
 RUN apt-get install -y vim
-RUN apt-get install -y sudo git
+RUN apt-get install -y sudo
 
-# Install nodejs and npm node-red
-RUN apt-get install -y nodejs-legacy
-
-
+# networking
+#RUN apt-get install -y ping net-tools
 
 # adv account
 RUN useradd -m -k /home/adv adv -p adv -s /bin/bash -G sudo
@@ -23,14 +21,10 @@ RUN echo "adv ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
 WORKDIR /home/adv
 USER adv
 
-# install APIGateway
-RUN git clone https://github.com/ADVANTECH-Corp/APIGateway.git /home/adv/APIGateway
-RUN sudo cp APIGateway/script/advigw-restapi /usr/local/bin/.
-
-
-#Setting docker port and run node-red
-EXPOSE 3000
-
-# Run api-gw
-ENTRYPOINT ["advigw-restapi"]
+#install wisesnail lib and sample code
+RUN git clone --branch wisesnail-lib https://github.com/ADVANTECH-Corp/docker-igw-app-x86.git .
+RUN mkdir workspace
+RUN ./install_wisesnaillib.sh
+RUN mv sample ./workspace/.
+RUN rm -rf lib inc install_wisesnaillib.sh README.md
 
