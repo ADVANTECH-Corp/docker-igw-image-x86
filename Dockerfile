@@ -33,4 +33,4 @@ RUN sudo cp hdd_failure_predict/run_service.sh /usr/local/bin/.
 USER adv
 
 # Run hdd failure prediction servcie
-#ENTRYPOINT ["run_service.sh"]
+ENTRYPOINT ["run_service.sh"]
