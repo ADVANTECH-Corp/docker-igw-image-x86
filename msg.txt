@@ -1,8 +1,0 @@
-[api-gw] APIGateway Dockerfile
-
-Date            : 2016/11/29
-Bug #           : N/A
-Description     : APIGateway Dockerfile
-Files           : Dockerfile
-Reviewer        :
-Commit by       : Eric.Liang
