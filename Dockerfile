@@ -25,6 +25,5 @@ USER adv
 RUN git clone --branch wisesnail-lib https://github.com/ADVANTECH-Corp/docker-igw-app-x86.git .
 RUN mkdir workspace
 RUN ./install_wisesnaillib.sh
-RUN mv sample ./workspace/.
 RUN rm -rf lib inc install_wisesnaillib.sh README.md
 
