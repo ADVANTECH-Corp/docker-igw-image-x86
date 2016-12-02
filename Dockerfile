@@ -29,6 +29,8 @@ WORKDIR /home/adv
 RUN git clone https://github.com/ADVANTECH-Corp/hdd_failure_predict_service.git /home/adv/hdd_failure_predict
 RUN sudo chmod a+w hdd_failure_predict/Feature.data
 RUN sudo cp hdd_failure_predict/run_service.sh /usr/local/bin/.
+RUN sudo cd /home/adv/hdd_failure_predict
+RUN git checkout tags/v0.0.1
 
 USER adv
 
