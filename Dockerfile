@@ -26,7 +26,7 @@ RUN echo "adv ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
 WORKDIR /home/adv
 
 # install HDD failure prediction service
-RUN git clone https://github.com/ADVANTECH-Corp/hdd_failure_predict_service.git /home/adv/hdd_failure_predict
+RUN git clone --branch v0.0.1 https://github.com/ADVANTECH-Corp/hdd_failure_predict_service.git /home/adv/hdd_failure_predict
 RUN sudo chmod a+w hdd_failure_predict/Feature.data
 RUN sudo cp hdd_failure_predict/run_service.sh /usr/local/bin/.
 
