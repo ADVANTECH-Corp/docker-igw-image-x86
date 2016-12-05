@@ -11,7 +11,9 @@ RUN apt-get install -y vim
 RUN apt-get install -y sudo git
 
 # Install nodejs and npm node-red
-RUN apt-get install -y nodejs-legacy
+RUN apt-get install -y curl
+RUN curl -sL https://deb.nodesource.com/setup_4.x | sudo -E bash -
+RUN apt-get install -y nodejs
 
 
 
