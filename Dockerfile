@@ -28,7 +28,7 @@ RUN ./install_wisesnaillib.sh
 RUN rm -rf sample inc lib *.* ./.git
 
 # install wsn simulator
-RUN git clone --branch wsn-simulator https://github.com/ADVANTECH-Corp/docker-igw-app-x86.git ./wsn-simulator
+RUN git clone --branch wsn-simulator-v2.0.1 https://github.com/ADVANTECH-Corp/docker-igw-app-x86.git ./wsn-simulator
 RUN cp -r ./wsn-simulator/*.* ./wsn-simulator/wsn ./wsn-simulator/wisesim .
 RUN rm -rf ./wsn-simulator
 
