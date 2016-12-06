@@ -26,7 +26,7 @@ WORKDIR /home/adv
 USER adv
 
 # install APIGateway
-RUN git clone https://github.com/ADVANTECH-Corp/APIGateway.git /home/adv/APIGateway
+RUN git clone --branch APIGateway-v2.0.1 https://github.com/ADVANTECH-Corp/APIGateway.git /home/adv/APIGateway
 RUN sudo cp APIGateway/script/advigw-restapi /usr/local/bin/.
 
 
