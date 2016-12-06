@@ -7,7 +7,7 @@ RUN apt-get update
 RUN apt-get update
 RUN apt-get install -y gawk git-core diffstat gcc-multilib build-essential
 RUN apt-get install -y sed coreutils autoconf automake curl libtool libssl-dev
-RUN apt-get install -y vim
+RUN apt-get install -y vim net-tools iputils-ping subversion
 RUN apt-get install -y sudo
 
 # networking
