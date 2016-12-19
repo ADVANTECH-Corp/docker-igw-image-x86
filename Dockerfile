@@ -26,14 +26,15 @@ RUN npm install node-red-contrib-alljoyn -g
 # adv account
 RUN useradd -m -k /home/adv adv -p adv -s /bin/bash -G sudo
 
-# Install wsn node v2
-RUN git clone --branch node-red-contrib-wsn https://github.com/ADVANTECH-Corp/docker-igw-app-x86.git /home/adv/node-red-contrib-wsn
-RUN sudo mv node-red-contrib-wsn /usr/local/lib/node_modules/.
-
 # set up adv as sudo
 RUN echo "adv ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
 WORKDIR /home/adv
 USER adv
+
+
+# Install wsn node v2
+RUN git clone --branch node-red-contrib-wsn https://github.com/ADVANTECH-Corp/docker-igw-app-x86.git /home/adv/node-red-contrib-wsn
+RUN sudo mv node-red-contrib-wsn /usr/local/lib/node_modules/.
 
 #Setting docker port and run node-red
 EXPOSE 1880
