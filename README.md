@@ -24,9 +24,14 @@ Branch:
 ## node-red
 This Docker image can support Node-Red sevice
 
-## mqtt_bus
+## mqtt-bus
 This Docker image can support MQTT Bus sevice
 
-## apigw_service
+## api-gw
 This Docker image can support API Gateway service
 
+## wsn-simulator
+This Docker image is a WSN Simulator
+
+## wisesnail-lib-dev
+Thsi Docker image is a developing environment includes wisesnail library and sample code.
