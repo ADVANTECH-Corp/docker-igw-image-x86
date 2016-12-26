@@ -1,15 +1,5 @@
-FROM ubuntu:16.04
-
-#update
-RUN apt-get update
-
-
-# Install mosquitto and mosquitto-clients
-RUN apt-get install -y mosquitto
-RUN apt-get install -y mosquitto-clients
-
-#Setting docker port
+FROM alpine
+MAINTAINER @advantech
+RUN (apk add --no-cache mosquitto mosquitto-clients && rm -rf /var/cache/apk/*)
 EXPOSE 1883
-
-#Run mosquitto
 ENTRYPOINT ["/usr/sbin/mosquitto"]
