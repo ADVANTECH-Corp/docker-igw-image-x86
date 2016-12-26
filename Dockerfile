@@ -5,6 +5,8 @@ RUN apk update && apk add --no-cache git nodejs && \
     cp /home/adv/APIGateway/script/advigw-restapi /usr/local/bin/. && \
     apk del git && rm -rf /tmp/* /var/cache/apk/*
     
+VOLUME ["/home/adv/wsn_setting"]
+
 EXPOSE 3000
 
 ENTRYPOINT ["advigw-restapi"]
