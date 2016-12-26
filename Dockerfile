@@ -1,38 +1,11 @@
-FROM ubuntu:16.04
+FROM alpine
 
-#MAINTAINER Advantech
-
-#update and install npm
-RUN apt-get update
-RUN apt-get install -y npm
-
-#tools
-RUN apt-get install -y vim
-RUN apt-get install -y sudo git
-
-# Install nodejs and npm node-red
-RUN apt-get install -y curl
-RUN curl -sL https://deb.nodesource.com/setup_4.x | sudo -E bash -
-RUN apt-get install -y nodejs
-
-
-
-# adv account
-RUN useradd -m -k /home/adv adv -p adv -s /bin/bash -G sudo
-
-# set up adv as sudo
-RUN echo "adv ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
-WORKDIR /home/adv
-USER adv
-
-# install APIGateway
-RUN git clone --branch APIGateway-v2.0.1 https://github.com/ADVANTECH-Corp/APIGateway.git /home/adv/APIGateway
-RUN sudo cp APIGateway/script/advigw-restapi /usr/local/bin/.
-
-
-#Setting docker port and run node-red
+RUN apk update && apk add --no-cache git nodejs && \
+    git clone https://github.com/ADVANTECH-Corp/APIGateway.git /home/adv/APIGateway && \
+    cp APIGateway/script/advigw-restapi /usr/local/bin/. && \
+    apk del git && rm -rf /tmp/* /var/cache/apk/*
+    
 EXPOSE 3000
 
-# Run api-gw
 ENTRYPOINT ["advigw-restapi"]
 
