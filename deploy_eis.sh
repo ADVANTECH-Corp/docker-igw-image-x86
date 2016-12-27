@@ -4,12 +4,12 @@ EIS_VERSION=v2.0.1
 ADVANTECH_NET=advigw_network
 #mqtt
 MQTT_VERSION=$EIS_VERSION
-MQTT_IMAGE=advigw4x86/mqtt-bus:$MQTT_VERSION
+MQTT_IMAGE=advigw4x86/mqtt-bus
 MQTT_CONTAINER=advigw-mqtt-bus
 
 #api_gw
 API_GW_VERSION=$EIS_VERSION
-API_GW_IMAGE=advigw4x86/api-gw:$API_GW_VERSION
+API_GW_IMAGE=advigw4x86/api-gw
 API_GW_CONTAINER=advigw-api-gw
 
 
@@ -24,7 +24,11 @@ WSN_SIMULATOR_VERSION=$EIS_VERSION
 WSN_SIMULATOR_IMAGE=advigw4x86/wsn-simulator:$WSN_SIMULATOR_VERSION
 WSN_SIMULATOR_CONTAINER=advigw-wsn-simulator
 
-
+#webmin module folder
+WEBMIN_MAIN_FOLDER=/usr/share/webmin
+WSN_SETTING_FOLDER=advan_wsn_setting
+WEBMIN_ACL_FILE=/etc/webmin/webmin.acl
+WEBMIN_MODULE_CACHE_INFO=/var/webmin/module.infos.cache
 
 if [ "$1" == "rmi" ]; then
 echo "======================================="
@@ -109,12 +113,30 @@ echo "======================================="
 
 fi
 
+echo "======================================="
+echo "[Step5]: Setup Webmin Advantech WSN plugin folder......"
+echo "======================================="
+sudo rm -rf $WEBMIN_MAIN_FOLDER/$WSN_SETTING_FOLDER
+sudo mkdir -p $WEBMIN_MAIN_FOLDER/$WSN_SETTING_FOLDER
+sudo chmod a+rwx -R $WEBMIN_MAIN_FOLDER/$WSN_SETTING_FOLDER
+sudo chmod a+rw $WEBMIN_ACL_FILE
+WSN_SETTING_ACL=`cat $WEBMIN_ACL_FILE | grep $WSN_SETTING_FOLDER`
+if [ "$WSN_SETTING_ACL" == "" ] ; then
+echo "wsn_setting ACL is null"
+echo "root: $WSN_SETTING_FOLDER" >> $WEBMIN_ACL_FILE
+fi
+
+echo "======================================="
+echo "[Step6]: Clear Webmin module cache......"
+echo "======================================="
+sudo rm -rf $WEBMIN_MODULE_CACHE_INFO
+
 #run containers
 echo "======================================="
-echo "[Step5]: Run container images......"
+echo "[Step7]: Run container images......"
 echo "======================================="
 sudo docker run -d -it --name $MQTT_CONTAINER -p 1883:1883 $MQTT_IMAGE
-sudo docker run -d -it --name $API_GW_CONTAINER -p 3000:3000 $API_GW_IMAGE
+sudo docker run -d -it --name $API_GW_CONTAINER -v $WEBMIN_MAIN_FOLDER/$WSN_SETTING_FOLDER:/home/adv/wsn_setting:rw -p 3000:3000 $API_GW_IMAGE
 sudo docker run -d -it --name $WISESNAIL_LIB_CONTAINER -v $PWD:/home/adv/workspace:rw $WISESNAIL_LIB_IMAGE
 sudo docker run -d -it --name $WSN_SIMULATOR_CONTAINER $WSN_SIMULATOR_IMAGE
 #sudo docker exec -it $WISESNAIL_LIB_CONTAINER bash
