@@ -4,33 +4,23 @@ FROM ubuntu:16.04
 
 #MAINTAINER Advantech
 
-# update and install dev-tools 
-RUN apt-get update
-RUN apt-get update
-RUN apt-get install -y git-core
-RUN apt-get install -y vim
-RUN apt-get install -y sudo
-
-# networking
-#RUN apt-get install -y ping net-tools
-
-# adv account
-RUN useradd -m -k /home/adv adv -p adv -s /bin/bash -G sudo
-
-# set up adv as sudo
-RUN echo "adv ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
 WORKDIR /home/adv
-USER adv
+# update and install dev-tools 
+RUN apt-get update &&\
+    apt-get install -y git-core && \
+    apt-get install -y vim && \
+    apt-get install -y sudo && \
+    useradd -m -k /home/adv adv -p adv -s /bin/bash -G sudo && \
+    echo "adv ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers && \
+    git clone --branch wisesnail-lib-v2.0.1 https://github.com/ADVANTECH-Corp/docker-igw-app-x86.git . && \
+    ./install_wisesnaillib.sh && \
+    rm -rf sample inc lib *.* ./.git && \
+    git clone --branch wsn-simulator-v2.0.1 https://github.com/ADVANTECH-Corp/docker-igw-app-x86.git ./wsn-simulator && \
+    cp -r ./wsn-simulator/*.* ./wsn-simulator/wsn ./wsn-simulator/wisesim . && \
+    rm -rf ./wsn-simulator && \
+    apt-get autoremove --purge -y git-core
 
-# install wisesnail lib and sample code
-RUN git clone --branch wisesnail-lib-v2.0.1 https://github.com/ADVANTECH-Corp/docker-igw-app-x86.git .
-RUN ./install_wisesnaillib.sh
-RUN rm -rf sample inc lib *.* ./.git
-
-# install wsn simulator
-RUN git clone --branch wsn-simulator-v2.0.1 https://github.com/ADVANTECH-Corp/docker-igw-app-x86.git ./wsn-simulator
-RUN cp -r ./wsn-simulator/*.* ./wsn-simulator/wsn ./wsn-simulator/wisesim .
-RUN rm -rf ./wsn-simulator
 
 # Run WSN Simulator  Service
 ENTRYPOINT ["./wisesim"]
+
