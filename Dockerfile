@@ -1,15 +1,20 @@
 FROM ubuntu:16.04
 
-#update
-RUN apt-get update
+#wsn-simulator
+
+#MAINTAINER Advantech
+
+WORKDIR /home/adv
+# update and install dev-tools 
+RUN apt-get update &&\
+    apt-get install -y git-core && \
+    apt-get install -y sudo && \
+    useradd -m -k /home/adv adv -p adv -s /bin/bash -G sudo && \
+    echo "adv ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers && \
+    git clone --branch wisesnail-lib-v2.0.1 https://github.com/ADVANTECH-Corp/docker-igw-app-x86.git . && \
+    ./install_wisesnaillib.sh && \
+    rm -rf sample inc lib *.* ./.git && \
+    apt-get autoremove --purge -y git-core
 
 
-# Install mosquitto and mosquitto-clients
-RUN apt-get install -y mosquitto
-RUN apt-get install -y mosquitto-clients
 
-#Setting docker port
-EXPOSE 1883
-
-#Run mosquitto
-ENTRYPOINT ["/usr/sbin/mosquitto"]
