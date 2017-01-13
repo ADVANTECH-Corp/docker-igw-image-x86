@@ -5,7 +5,7 @@ MQTT_BUS_TAG=latest
 API_GW_TAG=latest
 NODE_RED_TAG=latest
 WSN_SIMULATOR_TAG=${EIS_VER}
-WSN_DEV_TAG=${EIS_VER}
+WSN_DEV_TAG=latest
 
 
 echo "MQTT_BUS_TAG=${MQTT_BUS_TAG}" > .env
