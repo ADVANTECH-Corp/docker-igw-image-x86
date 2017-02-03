@@ -1,10 +1,10 @@
 docker-igw-image
-This Docker image can support API-Gateway, Node-Red ,MQTT, WSN-Simulator, and WSN-Development sevices for x86_64 Linux OS Platform.
+EIS Docker images include  API-Gateway, Node-Red ,MQTT-BUS, Dust-Link,  WSN-Simulator, and WSN-Development sevices on x86_64 Linux OS Platform.
 
 #Requirement
 Arch: x86_64
-OS: Ubuntu 14.04 x86_64
-Docker Engine: 1.11.2
+OS: Ubuntu 16.04 x86_64
+Docker Engine: 1.12.6
 Docker Compose: 1.9.0
 
 # Deploy
@@ -30,23 +30,3 @@ Restart all EIS Docker Container
 
 ```
 
-# Dockerfile
-
-You can change branch to checkout each image's Dockerfile
-
-Branch:
-
-## node-red
-This Docker image can support Node-Red sevice
-
-## mqtt-bus
-This Docker image can support MQTT Bus sevice
-
-## api-gw
-This Docker image can support API Gateway service
-
-## wsn-simulator
-This Docker image is a WSN Simulator
-
-## wisesnail-lib-dev
-Thsi Docker image is a developing environment includes wisesnail library and sample code.

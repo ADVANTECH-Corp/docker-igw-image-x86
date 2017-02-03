@@ -11,13 +11,13 @@ services:
    networks:
     - advigw-network   
 
-  advigw-wisesnail-dev:
-   image: advigw4x86/wisesnail-lib:${WSN_DEV_TAG}
-   container_name: advigw-wisesnail-dev
-   networks: 
-   - advigw-network
-   volumes:
-   - ./:/home/adv/workspace:rw
+  #advigw-wisesnail-dev:
+  # image: advigw4x86/wisesnail-lib:${WSN_DEV_TAG}
+  # container_name: advigw-wisesnail-dev
+  # networks: 
+  # - advigw-network
+  # volumes:
+  # - /home/adv/Advantech:/home/adv/workspace:rw
 
 networks:
  advigw-network: 

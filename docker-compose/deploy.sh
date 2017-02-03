@@ -3,7 +3,9 @@
 #version control
 ./version.sh
 
-adv_composefiles=(./advantech/eis-base-service.yml ./advantech/wsn-dev.yml)
+adv_composefiles=(./advantech/eis-base-service.yml ./advantech/wsn-dust-link.yml)
+#adv_composefiles=(./advantech/eis-base-service.yml ./advantech/wsn-dev.yml ./advantech/wsn-dust-link.yml)
+
 exten_composefiles=()
 
 actions=(start stop restart pause unpause rmi rm down pull)
@@ -25,10 +27,17 @@ for ac in ${actions[@]}; do
    fi
 done
 
+
+# rm: == down
+if [ "$1" == "rm" ]; then
+ action="down"
+fi
+
 # rmi: must to down
 if [ "$1" == "rmi" ]; then
  action="down"
 fi
+
 
 # default action: up
 if [ "$1" == "" ]; then
@@ -43,7 +52,7 @@ exit 0
 fi
 
 # docker-compose
-exec_cmd="sudo docker-compose" 
+exec_cmd="docker-compose" 
 exec_cmd+=${compose_param} 
 exec_cmd+=${action}
 
@@ -55,11 +64,11 @@ fi
 
 if [ "$1" == "rmi" ]; then
 
-images=`sudo docker images | grep "advigw4x86" | awk '{print $3}'`
+images=`docker images | grep "advigw4x86" | awk '{print $3}'`
 
 for image in ${images[@]}; do
  #echo "images ${image}"
- sudo docker rmi ${image}
+ docker rmi ${image}
 done
 exit 0
 fi
