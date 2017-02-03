@@ -14,7 +14,8 @@ RUN apt-get update &&\
     git clone --branch wisesnail-lib-v2.0.1 https://github.com/ADVANTECH-Corp/docker-igw-app-x86.git . && \
     ./install_wisesnaillib.sh && \
     rm -rf sample inc lib *.* ./.git && \
-    apt-get autoremove --purge -y git-core
+    apt-get autoremove --purge -y git-core && \
+    apt-get install libssl1.0.0
 
 
 
