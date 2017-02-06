@@ -29,6 +29,11 @@ services:
     - 1880:1880
 
 
+  advigw-hdd-pmq:
+   image: "advigw4x86/hdd-failure-predict:${HDD_PMQ_TAG}"
+   container_name: advigw-hdd-pmq
+   networks: 
+    - advigw-network
 
 networks:
   advigw-network:
