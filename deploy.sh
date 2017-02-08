@@ -8,7 +8,7 @@ adv_composefiles=(./advantech/eis-base-service.yml ./advantech/wsn-dust-link.yml
 
 exten_composefiles=()
 
-actions=(start stop restart pause unpause rmi rm down pull)
+actions=(start stop restart pause unpause rmi rm down pull update)
 
 
 # combine all yml files
@@ -27,6 +27,11 @@ for ac in ${actions[@]}; do
    fi
 done
 
+# update
+if [ "$1" == "update" ]; then
+  ./update.sh &
+  exit 0
+fi
 
 # rm: == down
 if [ "$1" == "rm" ]; then
