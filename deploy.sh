@@ -29,7 +29,7 @@ done
 
 # update
 if [ "$1" == "update" ]; then
-  ./update.sh &
+  ./update.sh
   exit 0
 fi
 

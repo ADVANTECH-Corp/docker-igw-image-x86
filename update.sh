@@ -1,9 +1,8 @@
 #!/bin/bash
 
-UPDATE_FLODER="upgrade"
 
 echo "Checking..."
-git clone --branch installer https://github.com/ADVANTECH-Corp/docker-igw-image-x86 ${PWD}/$UPDATE_FOLDER
+git clone --branch installer https://github.com/ADVANTECH-Corp/docker-igw-image-x86 ./upgrade &> /dev/null
 
 source ./version.sh
 ORIGIN_VER=$EIS_VER
@@ -16,13 +15,19 @@ else
   exit 1
 fi
 
-cd ./$UPDATE_FOLDER
+cd ./upgrade
 unset EIS_VER
 source ./version.sh
 LATEST_VER=$EIS_VER
 unset EIS_VER
 #echo "$LATEST_VER"
 cd ../
+
+
+function clean_data()
+{
+   rm -rf ./upgrade
+}
 
 # check version 
 if [ $ORIGIN_VER == $LATEST_VER ]; then
@@ -34,7 +39,7 @@ elif [ $LATEST_VER \> $ORIGIN_VER ]; then
  read -t 10 -p "Do you want to upgrade $ORIGIN_VER to $LATEST_VER? [y/n](default:n) " ans
  if [ "$ans" == "y" ] || [ "$ans" == "Y" ]; then
     echo "Upgrading..."
-    cp -r ./upgrade/. .
+    cp -r ./upgrade/. . &> /dev/null
     ./deploy.sh
  else
     exit 0
