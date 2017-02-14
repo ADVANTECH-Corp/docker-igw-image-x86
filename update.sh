@@ -1,6 +1,12 @@
 #!/bin/bash
 
 
+clean_data()
+{
+   rm -rf ./upgrade
+}
+
+clean_data
 echo "Checking..."
 git clone --branch installer https://github.com/ADVANTECH-Corp/docker-igw-image-x86 ./upgrade &> /dev/null
 
@@ -24,10 +30,6 @@ unset EIS_VER
 cd ../
 
 
-function clean_data()
-{
-   rm -rf ./upgrade
-}
 
 # check version 
 if [ $ORIGIN_VER == $LATEST_VER ]; then

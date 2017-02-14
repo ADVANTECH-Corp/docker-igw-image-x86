@@ -6,6 +6,7 @@ services:
   advigw-mqtt-bus:
    image: "advigw4x86/mqtt-bus:${MQTT_BUS_TAG}"
    container_name: advigw-mqtt-bus
+   restart: always
    networks: 
     - advigw-network
    ports:
@@ -15,6 +16,7 @@ services:
   advigw-api-gw:
     image: "advigw4x86/api-gw:${API_GW_TAG}"
     container_name: advigw-api-gw
+    restart: always
     networks:
      - advigw-network
     ports:
@@ -23,6 +25,7 @@ services:
   advigw-node-red:
    image: "advigw4x86/node-red:${NODE_RED_TAG}"
    container_name: advigw-node-red
+   restart: always
    networks: 
     - advigw-network
    ports:
@@ -32,6 +35,7 @@ services:
   advigw-hdd-pmq:
    image: "advigw4x86/hdd-failure-predict:${HDD_PMQ_TAG}"
    container_name: advigw-hdd-pmq
+   restart: always
    networks: 
     - advigw-network
 

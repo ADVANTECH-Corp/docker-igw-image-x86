@@ -6,6 +6,7 @@ services:
   advigw-dust-link:
    image: advigw4x86/dust-link:${DUST_LINK_TAG}
    container_name: advigw-dust-link
+   restart: always
    depends_on:
     - advigw-mqtt-bus
    networks:
