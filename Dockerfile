@@ -22,5 +22,5 @@ RUN apt-get update &&\
 
 
 # Run WSN Simulator  Service
-ENTRYPOINT ["./wisesim"]
+#ENTRYPOINT ["./wisesim"]
 
