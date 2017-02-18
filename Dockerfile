@@ -9,7 +9,7 @@ WORKDIR /home/adv
 RUN apt-get update &&\
     apt-get install -y git-core &&\
     git clone --branch bt-simulator https://github.com/ADVANTECH-Corp/docker-igw-app-x86.git ./wsn-simulator && \
-	cp -r ./wsn-simulator/*.* ./wsn-simulator/wsn ./wsn-simulator/wisesim . && \
+	cp -r ./wsn-simulator/code ./wsn-simulator/wisesim . && \
     rm -rf ./wsn-simulator && \
     apt-get autoremove --purge -y git-core
 
