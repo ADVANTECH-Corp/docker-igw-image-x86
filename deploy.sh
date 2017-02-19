@@ -4,7 +4,6 @@
 ./version.sh
 
 adv_composefiles=(./advantech/eis-base-service.yml ./advantech/wsn-dust-link.yml)
-#adv_composefiles=(./advantech/eis-base-service.yml ./advantech/wsn-dev.yml ./advantech/wsn-dust-link.yml)
 
 exten_composefiles=()
 
@@ -31,6 +30,16 @@ done
 if [ "$1" == "update" ]; then
   ./update.sh
   exit 0
+fi
+
+if [ "$1" == "wsn-sim.sh" ]; then 
+  ./advantech/wsn-sim.sh $2
+  exit 0
+fi
+
+if [ "$1" == "wsn-dev.sh" ]; then
+ ./advantech/wsn-dev.sh $2
+ exit 0
 fi
 
 # rm: == down
