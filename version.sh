@@ -5,7 +5,7 @@ MQTT_BUS_TAG=latest
 API_GW_TAG=latest
 NODE_RED_TAG=latest
 WSN_SIMULATOR_TAG=latest
-WSN_DEV_TAG=${EIS_VER}
+WSN_DEV_TAG=latest
 DUST_LINK_TAG=latest
 HDD_PMQ_TAG=latest
 

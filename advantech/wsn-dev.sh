@@ -7,11 +7,7 @@ IMAGE_NAME=advigw4x86/wisesnail-lib:${WSN_DEV_TAG}
 CONTAINER_NAME=advigw-wisesnail-dev
 
 if [ "$1" == "" ] || [ "$1" == "up" ]; then
-	docker run -it --name $CONTAINER_NAME -v $PWD:/home/adv/workspace:rw $IMAGE_NAME
-
-	docker network connect advantech_advigw-network $CONTAINER_NAME
-
-	docker exec -it $CONTAINER_NAME bash
+	docker run -it --name $CONTAINER_NAME --network=advantech_advigw-network  -v $PWD:/home/adv/workspace:rw $IMAGE_NAME 
 elif [ "$1" == "bash" ]; then
 	docker start $CONTAINER_NAME
 	docker exec -it $CONTAINER_NAME bash
@@ -26,6 +22,8 @@ elif [ "$1" == "down" ] || [ "$1" == "rmi" ]; then
 	docker stop $CONTAINER_NAME
 	docker rm $CONTAINER_NAME
 	docker rmi $IMAGE_NAME
+else
+    echo "Unknow command: wsn-dev.sh supports these up, start, bash, stop, rm, down, rmi!"
 fi
 
 
