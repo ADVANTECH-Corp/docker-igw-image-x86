@@ -1,6 +1,8 @@
 docker-igw-image
 This Docker image can support Node-Red ,MQTT sevice for x86_64 Linux OS Platform.
 
+#Version: v2.0.2
+
 # Deploy
 You can run deploy_eis.sh to deploy the EIS software service to your x86_64 IoT Gateway with Docker Engine.
 
