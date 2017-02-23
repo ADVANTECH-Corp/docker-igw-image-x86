@@ -15,15 +15,17 @@ elif [ "$1" == "start" ]; then
 	docker start $CONTAINER_NAME
 elif [ "$1" == "stop" ]; then
 	docker stop $CONTAINER_NAME
-elif [ "$1" == "rm" ]; then
+elif [ "$1" == "rm" ] || [ "$1" == "down" ]; then
 	docker stop $CONTAINER_NAME
 	docker rm $CONTAINER_NAME
-elif [ "$1" == "down" ] || [ "$1" == "rmi" ]; then
+elif [ "$1" == "rmi" ]; then
 	docker stop $CONTAINER_NAME
 	docker rm $CONTAINER_NAME
 	docker rmi $IMAGE_NAME
+elif [ "$1" == "pull" ]; then
+        docker pull $IMAGE_NAME
 else
-    echo "Unknow command: wsn-dev.sh supports these up, start, bash, stop, rm, down, rmi!"
+    echo "Unknow command: Script only supports pull, up, start, bash, stop, rm, down, and rmi!"
 fi
 
 
