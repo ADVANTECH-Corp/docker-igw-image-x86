@@ -1,9 +1,9 @@
 docker-igw-image
-EIS Docker images include  API-Gateway, Node-Red ,MQTT-BUS, Dust-Link,  WSN-Simulator, and WSN-Development sevices on x86_64 Linux OS Platform.
+EIS includes  API-Gateway, Node-Red ,MQTT-BUS, Dust-Link,  WSN-Simulator, HDD-PMQ, and WSN-Development Docker Container Sevices in x86_64 Linux OS Platform.
 
 #Requirement
 Arch: x86_64
-OS: Ubuntu 16.04 x86_64
+OS: Ubuntu 14.04 x86_64
 Docker Engine: 1.12.6
 Docker Compose: 1.9.0
 
@@ -12,20 +12,31 @@ You can run deploy.sh to deploy the EIS software service to your  IoT Gateway wi
 
 ```go
 Deploy EIS SW Service: Pull and run all EIS Docker container service
-#./deploy.sh
+$./deploy.sh
 
 Pull all EIS images
-#./deploy.sh pull
+$./deploy.sh pull
 
-Stop and remove all EIS containers
-#./deploy.sh down
+Start all EIS Container Service
+$./deploy.sh start
 
-Remove all EIS Docker images
-#./deploy.sh rmi
+Stop all EIS Container Service
+$./deploy.sh stop
 
-Restart all EIS Docker Container
-#./deploy.sh restart
+Stop and remove all EIS Container Service
+$./deploy.sh down
 
+Restart all EIS Docker Container Service
+$./deploy.sh restart
+
+Remove all EIS Docker image
+$./deploy.sh rmi
+
+Run WSN Simulator
+$./deploy.sh wsn-sim.sh
+
+Run WSN Development Environment
+$./deploy.sh wsn-dev.sh
 
 
 ```

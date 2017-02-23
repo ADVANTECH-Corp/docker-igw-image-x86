@@ -3,12 +3,18 @@
 #version control
 ./version.sh
 
-adv_composefiles=(./advantech/eis-base-service.yml ./advantech/wsn-dust-link.yml)
+adv_composefiles=`find ./advantech -name *.yml`
+
+adv_bashfiles=`find ./advantech -type f -name \*.sh`
 
 exten_composefiles=()
 
 actions=(start stop restart pause unpause rmi rm down pull update)
 
+
+for bash in ${adv_bashfiles[@]}; do
+  echo ${bash}
+done
 
 # combine all yml files
 for yml in ${adv_composefiles[@]}; do
@@ -32,15 +38,15 @@ if [ "$1" == "update" ]; then
   exit 0
 fi
 
-if [ "$1" == "wsn-sim.sh" ]; then 
-  ./advantech/wsn-sim.sh $2
+# check is run docker in shcript not compose
+for bashfile in ${adv_bashfiles[@]}; do
+ filename=`echo ${bashfile} | sed 's/.*\///'`
+ if [ "$1" == ${filename} ]; then
+  ${bashfile} $2
   exit 0
-fi
+ fi
+done
 
-if [ "$1" == "wsn-dev.sh" ]; then
- ./advantech/wsn-dev.sh $2
- exit 0
-fi
 
 # rm: == down
 if [ "$1" == "rm" ]; then
