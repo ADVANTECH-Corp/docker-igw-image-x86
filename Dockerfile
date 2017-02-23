@@ -22,7 +22,7 @@ WORKDIR /home/adv
 USER adv
 
 #install wisesnail lib and sample code
-RUN git clone --branch wisesnail-lib https://github.com/ADVANTECH-Corp/docker-igw-app-x86.git .
+RUN git clone --branch wisesnail-lib-v2.0.2 https://github.com/ADVANTECH-Corp/docker-igw-app-x86.git .
 RUN mkdir workspace
 RUN ./install_wisesnaillib.sh
 RUN rm -rf lib inc install_wisesnaillib.sh README.md
