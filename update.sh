@@ -8,7 +8,7 @@ clean_data()
 
 clean_data
 echo "Checking..."
-git clone --branch installer https://github.com/ADVANTECH-Corp/docker-igw-image-x86 ./upgrade &> /dev/null
+git clone --branch release https://github.com/ADVANTECH-Corp/docker-igw-image-x86 ./upgrade &> /dev/null
 
 source ./version.sh
 ORIGIN_VER=$EIS_VER
