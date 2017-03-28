@@ -4,7 +4,7 @@ version: '2'
 services:
 
   advigw-dust-link:
-   image: advigw4x86/dust-link:${DUST_LINK_TAG}
+   image: advigw4x86/dust-link:v2.0.3
    container_name: advigw-dust-link
    restart: always
    depends_on:
@@ -13,6 +13,9 @@ services:
     - advigw-network   
    devices:
     - "/dev/ttyUSB0:/dev/ttyUSB0"
+   logging:
+    options:
+     max-size: 10M
    
 
 networks:
