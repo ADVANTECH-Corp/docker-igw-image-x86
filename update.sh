@@ -8,7 +8,12 @@ clean_data()
 
 clean_data
 echo "Checking..."
-git clone --branch release https://github.com/ADVANTECH-Corp/docker-igw-image-x86 ./upgrade &> /dev/null
+
+if [ "$1" == "test" ]; then
+ git clone --branch release_test https://github.com/ADVANTECH-Corp/docker-igw-image-x86 ./upgrade &> /dev/null
+else
+ git clone --branch release https://github.com/ADVANTECH-Corp/docker-igw-image-x86 ./upgrade &> /dev/null
+fi
 
 source ./version.sh
 ORIGIN_VER=$EIS_VER
@@ -42,7 +47,7 @@ elif [ $LATEST_VER \> $ORIGIN_VER ]; then
  if [ "$ans" == "y" ] || [ "$ans" == "Y" ]; then
     echo "Upgrading..."
     cp -r ./upgrade/. . &> /dev/null
-    ./deploy.sh
+    ./installer.sh
  else
     exit 0
  fi

@@ -41,7 +41,7 @@ fi
 
 # update
 if [ "$1" == "update" ]; then
-  ./update.sh
+  ./update.sh $2
   exit 0
 fi
 
