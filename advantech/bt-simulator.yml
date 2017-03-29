@@ -4,13 +4,15 @@ version: '2'
 services:
 
   advigw-bt-simulator:
-   image: advigw4x86/bt-simulator:${BT_SIMULATOR_TAG}
+   image: advigw4x86/bt-simulator:v2.0.3
    container_name: advigw-bt-simulator
    restart: always
    depends_on:
     - advigw-mqtt-bus
    networks:
     - advigw-network   
+   logging:
+  
    
 
 networks:
