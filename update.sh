@@ -47,7 +47,7 @@ elif [ $LATEST_VER \> $ORIGIN_VER ]; then
  if [ "$ans" == "y" ] || [ "$ans" == "Y" ]; then
     echo "Upgrading..."
     cp -r ./upgrade/. . &> /dev/null
-    ./deploy.sh
+    ./installer.sh
  else
     exit 0
  fi

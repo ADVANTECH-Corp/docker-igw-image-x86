@@ -12,6 +12,8 @@ services:
    networks:
     - advigw-network   
    logging:
+    options:
+     max-size: 5M
   
    
 
