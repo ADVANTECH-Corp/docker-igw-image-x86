@@ -12,9 +12,9 @@ exten_composefiles=()
 actions=(start stop restart pause unpause rmi rm down pull update)
 
 
-for bash in ${adv_bashfiles[@]}; do
-  echo ${bash}
-done
+#for bash in ${adv_bashfiles[@]}; do
+#  echo ${bash}
+#done
 
 # combine all yml files
 for yml in ${adv_composefiles[@]}; do
@@ -32,9 +32,16 @@ for ac in ${actions[@]}; do
    fi
 done
 
+# version
+if [ "$1" == "version" ]; then
+  source ./version.sh
+  echo "EIS version is: ${EIS_VER}"
+  exit 0 
+fi
+
 # update
 if [ "$1" == "update" ]; then
-  ./update.sh
+  ./update.sh $2
   exit 0
 fi
 
