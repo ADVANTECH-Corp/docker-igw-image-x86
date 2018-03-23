@@ -1,3 +1,3 @@
 #!/bin/bash
 
-EIS_VER=v2.0.99
+EIS_VER=v2.0.3
